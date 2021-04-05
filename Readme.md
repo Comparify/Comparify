@@ -6,7 +6,7 @@ Wir sind ein dreiköpfiges Team der technischen Hochschule Georg-Simon-Ohm und w
 Benötigte Entwicklungsumgebung:
 Visual Studio Community 2019: https://visualstudio.microsoft.com/de/vs/community/
 
-###ListView.View
+### ListView.View
 
     <ListView.View>
       <GridView AllowsColumnReorder="False">
@@ -31,4 +31,4 @@ Visual Studio Community 2019: https://visualstudio.microsoft.com/de/vs/community
           <GridViewColumn x:Name="GridViewColumn_Titel" Header="Titel" Width="400" DisplayMemberBinding="{Binding GridViewColumn_Titel}" />
           <GridViewColumn x:Name="GridViewColumn_Preis" Header="Preis" Width="200" DisplayMemberBinding="{Binding GridViewColumn_Preis}" />
       </GridView>
-  </ListView.View>
+    </ListView.View>
