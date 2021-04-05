@@ -4,47 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Comparify" Height="636.883" Width="925.333" Visibility="Visible" WindowStyle="ThreeDBorderWindow" Background="#FFB87070">
+        Title="TITEL" Height="636.883" Width="925.333" Visibility="Visible" WindowStyle="ThreeDBorderWindow" Background="#FFB87070">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="35*"/>
             <ColumnDefinition Width="229*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="SuchBox" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="Suchbox" VerticalAlignment="Top" Width="780" Margin="10,58,0,0" Grid.ColumnSpan="2" TextChanged="SuchBox_TextGeändert"/>
-        <Slider x:Name="slider1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="125,35,0,0" Height="18" Width="100" ValueChanged="slider1_WertGeändert" Grid.Column="1"/>
-        <TextBlock x:Name="preisschieber2" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="287,10,0,0" RenderTransformOrigin="1.588,0.646" Text="0 €" Grid.Column="1"/>
-        <Slider x:Name="slider2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="246,34,0,0" Height="19" Width="100" ValueChanged="slider2_WertGeändert" Grid.Column="1"/>
-        <Label Content="Filterkriterien:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="94"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" Margin="231,10,0,0" Grid.Column="1"/>
-        <TextBlock x:Name="preisschieber1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="0 €" VerticalAlignment="Top" Margin="164,10,0,0" Grid.Column="1"/>
-        <CheckBox x:Name="AmazonCheckBox" Content="Amazon" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,36,0,0" Checked="AmazonCheckBox_Checked"/>
-        <CheckBox x:Name="EbayCheckBox" Content="Ebay" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="87,36,0,0" Checked="EbayCheckBox_Checked" Grid.ColumnSpan="2"/>
-        <Button x:Name="SuchButton" Content="Suchen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Grid.Column="1" Margin="668,58,0,0" Click="SuchButton_Click" RenderTransformOrigin="-0.658,1.1"/>
-        <ListView x:Name="ErgebnisListView" VirtualizingStackPanel.IsVirtualizing="True"  ItemsSource="{Binding ListViewItemsCollections}" Grid.ColumnSpan="2" Margin="10,86,10,10" SelectionChanged="ErgebnisListView_AuswahlGeändert">
-            <ListView.View>
-                <GridView AllowsColumnReorder="False">
-                  <GridViewColumn x:Name="GridViewColumn_Webseite" Header="Plattform"  Width="150">
-                    <GridViewColumn.CellTemplate>
-                      <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                          <Image x:Name="GridViewColumn_Plattform" Width="150" Height="100" Source="{Binding GridViewColumn_Plattform}" />
-                        </StackPanel>
-                      </DataTemplate>
-                    </GridViewColumn.CellTemplate>
-                  </GridViewColumn>
-                    <GridViewColumn x:Name="GridViewColumn_Produkt" Header="Produktbild"  Width="150">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image x:Name="GridViewColumn_Bild" Width="150" Height="100" Source="{Binding GridViewColumn_Bild}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="GridViewColumn_Titel" Header="Titel" Width="400" DisplayMemberBinding="{Binding GridViewColumn_Titel}" />
-                    <GridViewColumn x:Name="GridViewColumn_Preis" Header="Preis" Width="200" DisplayMemberBinding="{Binding GridViewColumn_Preis}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
     </Grid>
 </Window>

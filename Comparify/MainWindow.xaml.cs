@@ -255,20 +255,6 @@ namespace Comparify
         
         #endregion
 
-        #region Slider
-        private void slider1_WertGeändert(object sender, RoutedPropertyChangedEventArgs<double> e) //linker Schieberegler: soll auf Var: preisschieberegler1 wirken
-        {
-            int mineuro = Convert.ToInt32(e.NewValue) + 5;
-            preisschieber1.Text = mineuro.ToString() + " €";
-        }
-
-        private void slider2_WertGeändert(object sender, RoutedPropertyChangedEventArgs<double> e) //rechter Schieberegler: soll auf Var: preisschieberegler2 wirken
-        {
-            int maxeuro = Convert.ToInt32(e.NewValue) * 10;
-            preisschieber2.Text = maxeuro.ToString() + " €";
-        }
-        #endregion
-
         #region Buttons
         private void SuchButton_Click(object sender, RoutedEventArgs e)
         {
