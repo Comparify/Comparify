@@ -6,9 +6,8 @@ Wir sind ein dreiköpfiges Team der technischen Hochschule Georg-Simon-Ohm und w
 Benötigte Entwicklungsumgebung:
 Visual Studio Community 2019: https://visualstudio.microsoft.com/de/vs/community/
 
+###ListView.View
 
-
-#LsitView.View
     <ListView.View>
       <GridView AllowsColumnReorder="False">
         <GridViewColumn x:Name="GridViewColumn_Webseite" Header="Plattform"  Width="150">
