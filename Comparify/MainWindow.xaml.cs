@@ -89,10 +89,7 @@ namespace Comparify
             {
                 WebseitenListe.Add("https://amazon.de/s?k=");
             }
-            if (EbayCheckBox.IsChecked == true)
-            {
-                WebseitenListe.Add("https://www.ebay.de/sch/i.html?&_nkw=");
-            }
+            //Aufgabe 1: Ebay-Checkbox einfügen
             #endregion
 
             for (int j = 0; j < WebseitenListe.Count; j++)
@@ -177,9 +174,10 @@ namespace Comparify
 			        {
                         Produkt Produkt = new Produkt();
 
-                        string Produktinfos = SubstringExtension.After(BildURL, "data-view=mi:1686|iid:"+iid+"");
-                        //wegen .Before -> iid + 1 = 2 als Startindex
-                        string subProduktinfos = SubstringExtension.Before(Produktinfos, "<div class=\"s-item__info clearfix\">");
+                        //Aufgabe 3: Suche in BildURL "data-view=mi:1686|iid" und weise nachfolgenden Code der neuen Variable: "Produktinfos" zu.
+
+                        // ÜBER MIR DIE VARIABLE ANLEGEN
+/*                      string subProduktinfos = SubstringExtension.Before(Produktinfos, "<div class=\"s-item__info clearfix\">");
 
                         string _produkttitel = SubstringExtension.After(subProduktinfos, "alt=\"");
                         Produkt.Titel = SubstringExtension.Before(_produkttitel, "\"");
@@ -190,18 +188,13 @@ namespace Comparify
                         Produkt.Link = SubstringExtension.After(_produktlink2, "https://");
                         if (Produkt.Preis == null)
                         {
-                            string test = SubstringExtension.After(Produktinfos, _produkttitel).Before("</span></div><span class=\"s-item__detail s-item__detail--secondary\">");
-                            Produkt.Preis = test.After("<span class=s-item__price>");
+                            string _produktpreis = SubstringExtension.After(Produktinfos, _produkttitel).Before("</span></div><span class=\"s-item__detail s-item__detail--secondary\">");
+                            Produkt.Preis = _produktpreis.After("<span class=s-item__price>");
                         }
+*/
 
-                        if (Produkt != null && Produkt.Titel != null && Produkt.Link != null && Produkt.Bild != null && Produkt.Preis != null && Produkt.Link != "" && Produkt.Bild != "" && Produkt.Titel != "")
-                        {
-                            GridProdukte.Add(Produkt);
-                        } 
-                        else
-                        {
-                            SuchVariable += 1;
-                        }
+                        //Aufgabe 2: Abfrage, ob ein Produkt existiert, ein Bild, Titel und Preis vorhanden und nicht leer ist.
+                        GridProdukte.Add(Produkt);
                     }
                 }
                 AddToListe(GridProdukte);
@@ -296,9 +289,11 @@ namespace Comparify
         }
         #endregion
 
+        #region Tabelle leeren
         private void LeereTabelle() 
         {
             ListViewItemsCollections.Clear();
         }
+        #endregion
     }
 }
