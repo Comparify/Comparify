@@ -46,6 +46,19 @@ namespace Comparify.SubstringExtensions
         }
 
         /// <summary>
+        /// Get index of value after [first] a.
+        /// </summary>
+        public static int BeforeIndexOf(this string value, string a)
+        {
+            int posA = value.IndexOf(a);
+            if (posA == -1)
+            {
+                return -1;
+            }
+            return posA;
+        }
+
+        /// <summary>
         /// Get string value after [last] a.
         /// </summary>
         public static string After(this string value, string a)

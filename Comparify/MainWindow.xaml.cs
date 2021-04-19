@@ -177,8 +177,8 @@ namespace Comparify
                         //Aufgabe 3: Suche in BildURL "data-view=mi:1686|iid" und weise nachfolgenden Code der neuen Variable: "Produktinfos" zu.
 
                         // ÜBER MIR DIE VARIABLE ANLEGEN
-/*                      string subProduktinfos = SubstringExtension.Before(Produktinfos, "<div class=\"s-item__info clearfix\">");
-
+/*                      
+                        string subProduktinfos = SubstringExtension.Before(Produktinfos, "<div class=\"s-item__info clearfix\">");
                         string _produkttitel = SubstringExtension.After(subProduktinfos, "alt=\"");
                         Produkt.Titel = SubstringExtension.Before(_produkttitel, "\"");
                         string _produktbild = SubstringExtension.After(subProduktinfos, "src=");
@@ -188,8 +188,11 @@ namespace Comparify
                         Produkt.Link = SubstringExtension.After(_produktlink2, "https://");
                         if (Produkt.Preis == null)
                         {
-                            string _produktpreis = SubstringExtension.After(Produktinfos, _produkttitel).Before("</span></div><span class=\"s-item__detail s-item__detail--secondary\">");
-                            Produkt.Preis = _produktpreis.After("<span class=s-item__price>");
+                            int produkt_index = SubstringExtension.BeforeIndexOf(Produktinfos, "</div><div class=\"s-item__details clearfix\"><div class=\"s-item__detail s-item__detail--primary\"><span class=s-item__price>");
+                            string produkt_sektion = Produktinfos.Substring(produkt_index);
+                            produkt_sektion = produkt_sektion.Before("</span></div><div class=\"s-item__detail s-item__detail--primary\">");
+                            string preis = produkt_sektion.After("price>");
+                            Produkt.Preis = preis;
                         }
 */
 
@@ -232,6 +235,11 @@ namespace Comparify
                 if (GridProdukte[i].Preis.Contains("EUR")) 
                 {
                     GridProdukte[i].Preis = GridProdukte[i].Preis.After("EUR");
+
+                    if (GridProdukte[i].Preis.Contains("</"))
+                    {
+                        GridProdukte[i].Preis = GridProdukte[i].Preis.Before("</");
+                    }
                 }
 
 
