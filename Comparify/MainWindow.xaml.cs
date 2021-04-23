@@ -1,4 +1,5 @@
-﻿using System;
+﻿#region usings
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,7 @@ using System.Diagnostics;
 //using Direktive für ListViewItems
 using Comparify.ListViewItems;
 using Comparify.SubstringExtensions;
+#endregion
 
 namespace Comparify
 {
@@ -193,7 +195,7 @@ namespace Comparify
 
                         // ÜBER MIR AUFGABE 2 BEARBEITEN
                         // -----------------------------
-                        // Aufgabe 3: Suche in BildURL "data-view=mi:1686|iid: {iid}" und weise nachfolgenden Code (nach dem Suchbegriff) der neuen Variable: "Produktinfos" zu.
+                        // Aufgabe 3: Suche in BildURL       $"data-view=mi:1686|iid: {iid}"       und weise nachfolgenden Code (nach dem Suchbegriff) der neuen Variable: "Produktinfos" zu.
 
 
                         // ÜBER MIR DIE AUFGABE 3 BEARBEITEN
