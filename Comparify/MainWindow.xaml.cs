@@ -26,14 +26,15 @@ using Comparify.ListViewItems;
 using Comparify.SubstringExtensions;
 
 namespace Comparify
-{    
-
+{
+    #region Produkt
     public class Produkt {
         public string Bild { get; set; }
         public string Titel { get; set; }
         public string Link { get; set; }
         public string Preis { get; set; }
     }
+    #endregion
 
     public partial class MainWindow : Window
     {
@@ -76,7 +77,7 @@ namespace Comparify
 
         #endregion
 
-        #region Funktionen
+        #region SucheProdukte
         private void SucheProdukte(string SucheNachText)
         {
             List<string> WebseitenListe = new List<string>();
@@ -84,17 +85,20 @@ namespace Comparify
             List<Produkt> GridProdukte = new List<Produkt>();
 
             #region Checkboxaktivierung
-            //Einfügen der gewünschten Webseiten in die Liste
             if (AmazonCheckBox.IsChecked == true)
             {
                 WebseitenListe.Add("https://amazon.de/s?k=");
             }
-            //Aufgabe 1: Ebay-Checkbox einfügen
+            // Aufgabe 1: Ebay-Checkbox einfügen
+
+            // ÜBER MIR DIE LÖSUNG EINFÜGEN
             #endregion
 
             for (int j = 0; j < WebseitenListe.Count; j++)
             {
                 string BildURL = "";
+
+                #region Webseiten Aufruf und BildURL-Zuweisung
                 string URI = WebseitenListe[j] + SucheNachText;
                 string AktuelleWebseite = SubstringExtension.Before(WebseitenListe[j].Substring(8), "/");
                 string data = hole_web_content(URI);
@@ -109,14 +113,18 @@ namespace Comparify
                     BildURL = SubstringExtension.Between(data, "srp-river-results", "srp-main-below-river");
                 }
 
-                int SuchVariable = 3; // Amazon SuchVariable, falls gesponsertes Produkt.
+                int SuchVariable = 3;
 
+                #endregion
+
+                #region Amazon Suchlogik
                 //Amazon.de Produkt-Titel, -Bild, -Link
                 if (WebseitenListe[j].Contains("amazon.de"))
                 {
                     for (int dii = 1; dii <= SuchVariable; dii++)
-			        {
-                        string Produktinfos = SubstringExtension.Before(BildURL, "data-image-index=\""+ dii +"\"");
+                    {
+                        #region innere For-Schleife
+                        string Produktinfos = SubstringExtension.Before(BildURL, "data-image-index=\"" + dii + "\"");
                         Produktinfos = Produktinfos.After("<a class=\"a-link-normal s-no-outline\"");
                         Produkt Produkt = new Produkt();
 
@@ -132,17 +140,17 @@ namespace Comparify
                             {
                                 k += 9;
                                 string _produktbild = Produktinfos.Substring(k);
-                                if (_produktbild[0] == '=') 
+                                if (_produktbild[0] == '=')
                                 {
                                     _produktbild = _produktbild.Substring(16);
                                     Produkt.Bild = SubstringExtension.Before(_produktbild, "\"");
                                 }
-                                else 
+                                else
                                 {
                                     Produkt.Bild = SubstringExtension.Before(_produktbild, "\"");
                                 }
                             }
-                            if (Produkt.Preis == null && Produkt.Link != null && Produkt.Link.Contains("/dp/")) 
+                            if (Produkt.Preis == null && Produkt.Link != null && Produkt.Link.Contains("/dp/"))
                             {
                                 string Produktpreisinfos = SubstringExtension.After(BildURL, Produktinfos);
                                 string test = SubstringExtension.Before(Produktpreisinfos, "</span><span class=\"a-price-symbol\">€</span></span></span>");
@@ -160,13 +168,19 @@ namespace Comparify
                         if (Produkt != null && Produkt.Titel != null && Produkt.Link != null && Produkt.Bild != null && Produkt.Preis != null && Produkt.Link != "" && Produkt.Bild != "" && Produkt.Titel != "" && !Produkt.Titel.Contains("Gesponsert"))
                         {
                             GridProdukte.Add(Produkt);
-                        } 
+                        }
                         else
                         {
                             SuchVariable += 1;
                         }
+
+                        #endregion
+
                     }
                 }
+                #endregion
+
+                #region Ebay Suchlogik
                 else if (WebseitenListe[j].Contains("www.ebay.de"))
                 {
                     //Ebay
@@ -174,37 +188,58 @@ namespace Comparify
 			        {
                         Produkt Produkt = new Produkt();
 
-                        //Aufgabe 3: Suche in BildURL "data-view=mi:1686|iid" und weise nachfolgenden Code der neuen Variable: "Produktinfos" zu.
+                        // Aufgabe 2: Lege eine Variable: "Produktinfos" (string) an.
 
-                        // ÜBER MIR DIE VARIABLE ANLEGEN
-/*                      
-                        string subProduktinfos = SubstringExtension.Before(Produktinfos, "<div class=\"s-item__info clearfix\">");
-                        string _produkttitel = SubstringExtension.After(subProduktinfos, "alt=\"");
-                        Produkt.Titel = SubstringExtension.Before(_produkttitel, "\"");
-                        string _produktbild = SubstringExtension.After(subProduktinfos, "src=");
-                        Produkt.Bild = _produktbild.Before(".jpg") + ".jpg";
-                        string _produktlink = SubstringExtension.After(subProduktinfos, "href=");
-                        string _produktlink2 = SubstringExtension.Before(_produktlink, " ");
-                        Produkt.Link = SubstringExtension.After(_produktlink2, "https://");
-                        if (Produkt.Preis == null)
+
+                        // ÜBER MIR AUFGABE 2 BEARBEITEN
+                        // -----------------------------
+                        // Aufgabe 3: Suche in BildURL "data-view=mi:1686|iid: {iid}" und weise nachfolgenden Code (nach dem Suchbegriff) der neuen Variable: "Produktinfos" zu.
+
+
+                        // ÜBER MIR DIE AUFGABE 3 BEARBEITEN
+                        #region Nach Aufgabe 3
+                        /*                      
+                                                string subProduktinfos = SubstringExtension.Before(Produktinfos, "<div class=\"s-item__info clearfix\">");
+                                                string _produkttitel = SubstringExtension.After(subProduktinfos, "alt=\"");
+                                                Produkt.Titel = SubstringExtension.Before(_produkttitel, "\"");
+                                                string _produktbild = SubstringExtension.After(subProduktinfos, "src=");
+                                                Produkt.Bild = _produktbild.Before(".jpg") + ".jpg";
+                                                string _produktlink = SubstringExtension.After(subProduktinfos, "href=");
+                                                string _produktlink2 = SubstringExtension.Before(_produktlink, " ");
+                                                Produkt.Link = SubstringExtension.After(_produktlink2, "https://");
+                                                if (Produkt.Preis == null)
+                                                {
+                                                    int produkt_index = SubstringExtension.BeforeIndexOf(Produktinfos, "</div><div class=\"s-item__details clearfix\"><div class=\"s-item__detail s-item__detail--primary\"><span class=s-item__price>");
+                                                    string produkt_sektion = Produktinfos.Substring(produkt_index);
+                                                    produkt_sektion = produkt_sektion.Before("</span></div><div class=\"s-item__detail s-item__detail--primary\">");
+                                                    string preis = produkt_sektion.After("price>");
+                                                    Produkt.Preis = preis;
+                                                }
+                        */
+                        #endregion
+
+                        #region Produkt zu Liste "GridProdukte" hinzufügen
+                        if (Produkt != null && Produkt.Titel != null && Produkt.Link != null && Produkt.Bild != null && Produkt.Preis != null && Produkt.Link != "" && Produkt.Bild != "" && Produkt.Titel != "")
                         {
-                            int produkt_index = SubstringExtension.BeforeIndexOf(Produktinfos, "</div><div class=\"s-item__details clearfix\"><div class=\"s-item__detail s-item__detail--primary\"><span class=s-item__price>");
-                            string produkt_sektion = Produktinfos.Substring(produkt_index);
-                            produkt_sektion = produkt_sektion.Before("</span></div><div class=\"s-item__detail s-item__detail--primary\">");
-                            string preis = produkt_sektion.After("price>");
-                            Produkt.Preis = preis;
+                            GridProdukte.Add(Produkt);
                         }
-*/
-
-                        //Aufgabe 2: Abfrage, ob ein Produkt existiert, ein Bild, Titel und Preis vorhanden und nicht leer ist.
-                        GridProdukte.Add(Produkt);
+                        else
+                        {
+                            SuchVariable += 1;
+                        }
+                        #endregion
                     }
                 }
+                #endregion
+
                 AddToListe(GridProdukte);
                 GridProdukte = new List<Produkt>();
             }
         }
 
+        #endregion
+
+        #region Wenn Grid leer
         private bool GridBeinhaltetKeinItem(List<Produkt> pListe, string pLink) 
         {
             foreach (var item in pListe)
@@ -217,6 +252,9 @@ namespace Comparify
 
             return true;
         }
+        #endregion
+
+        #region Füge zu Liste hinzu
 
         private void AddToListe(List<Produkt> GridProdukte)
         {
@@ -253,7 +291,7 @@ namespace Comparify
                 });
 			}
         }
-        
+
         #endregion
 
         #region Buttons
