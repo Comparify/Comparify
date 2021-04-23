@@ -319,7 +319,7 @@ namespace Comparify
         #endregion
 
         #region TextBoxen
-        private void SuchBox_TextGeändert(object sender, TextChangedEventArgs e)
+        private void SuchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
@@ -327,7 +327,7 @@ namespace Comparify
         #endregion
 
         #region Aufruf eines ListView-Items.
-        private void ErgebnisListView_AuswahlGeändert(object sender, SelectionChangedEventArgs e)
+        private void ErgebnisListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListViewItemsData selitem = (ListViewItemsData)ErgebnisListView.SelectedItem;
             if (selitem != null) 
