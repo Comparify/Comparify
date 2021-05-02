@@ -155,8 +155,8 @@ namespace Comparify
                             if (Produkt.Preis == null && Produkt.Link != null && Produkt.Link.Contains("/dp/"))
                             {
                                 string Produktpreisinfos = SubstringExtension.After(BildURL, Produktinfos);
-                                string test = SubstringExtension.Before(Produktpreisinfos, "</span><span class=\"a-price-symbol\">€</span></span></span>");
-                                Produkt.Preis = SubstringExtension.After(test, "<span class=\"a-price-whole\">");
+                                string vorEuroZeichen = SubstringExtension.Before(Produktpreisinfos, "</span><span class=\"a-price-symbol\">€</span></span></span>");
+                                Produkt.Preis = SubstringExtension.After(vorEuroZeichen, "<span class=\"a-price-whole\">");
                             }
                             if (Produktinfos[k] == 'a' && Produktinfos[k + 1] == 'l' && Produktinfos[k + 2] == 't')
                             {
