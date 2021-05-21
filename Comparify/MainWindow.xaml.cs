@@ -302,6 +302,12 @@ namespace Comparify
             LeereTabelle();
             SucheProdukte(SuchBox.Text);
         }
+
+        // Falls doppelt auf den SuchButton im Designer geklickt wurde.
+        private void SuchButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            SuchButton_Click(sender, e);
+        }
         #endregion
 
         #region CheckBoxen
