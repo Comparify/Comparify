@@ -32,3 +32,10 @@ Visual Studio Community 2019: https://visualstudio.microsoft.com/de/vs/community
           <GridViewColumn x:Name="GridViewColumn_Preis" Header="Preis" Width="200" DisplayMemberBinding="{Binding GridViewColumn_Preis}" />
       </GridView>
     </ListView.View>
+
+### FAQ
+
+Falls Probleme auftreten oder ihr nicht weiter wisst:
+
+1. Ich habe Ausversehen auf ein Oberflächenelement doppelt geklickt und jetzt wird mir eine neue Methode "Methodenname_1" angezeigt.
+Antwort: Kein Problem, kopiere entweder den Inhalt der Methode "Methodenname" in "Methodenname_1" oder rufe "Methodenname" auf, indem du "Methodenname(sender,e);" in "Methodenname_1" schreibst.
